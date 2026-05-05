@@ -5,18 +5,18 @@ import MovieCard from "./components/MovieCard";
 import {useDebounce} from "react-use";
 import {updateSearchCount} from "./appwrite";
 
-// const API_BASE_URL = "https://api.themoviedb.org/3";
-// const API_KEY = import.meta.env.VITE_TMTB_API_KEY;
+const API_BASE_URL = "https://api.themoviedb.org/3";
+const API_KEY = import.meta.env.VITE_TMTB_API_KEY;
 
-// const API_OPTIONS = {
-//   method: "GET",
-//   headers: {
-//     accept: "application/json",
-//     Authorization: `Bearer ${API_KEY}`
-//   }
-// }
+const API_OPTIONS = {
+  method: "GET",
+  headers: {
+    accept: "application/json",
+    Authorization: `Bearer ${API_KEY}`
+  }
+}
 
-const API_BASE_URL = "http://localhost:5000";
+//const API_BASE_URL = "http://localhost:5000";
 
 const App = () => {
 
@@ -33,7 +33,7 @@ const App = () => {
       const endPoint = query
         ? `${API_BASE_URL}/search/movie?query=${encodeURIComponent(query)}`
         : `${API_BASE_URL}/discover/movie?sort_by=popularity.desc`;
-      const moviesResponse = await fetch(endPoint);
+      const moviesResponse = await fetch(endPoint, API_OPTIONS);
       if (!moviesResponse.ok) {
         throw new Error(`HTTP error! status: ${moviesResponse.status}`);
       }
